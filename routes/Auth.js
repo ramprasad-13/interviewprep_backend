@@ -71,7 +71,7 @@ router.post('/auth/signup', async (req, res) => {
       { expiresIn: '30m' } // Increased to 30 minutes
     );
 
-    const verificationLink = `${process.env.CLIENT_URL}/verify-email?token=${token}`;
+    const verificationLink = `${process.env.BACKEND_URL}/auth/verify-email?token=${token}`;
     await sendVerificationEmail(email, verificationLink, fullName);
 
     res.status(200).json({ message: 'Verification email sent. Please check your inbox.' });
