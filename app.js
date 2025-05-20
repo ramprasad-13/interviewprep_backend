@@ -46,6 +46,10 @@ app.use('/api', auth, questionsRoute);
 // Connect to MongoDB
 db();
 
+app.get('/',(req,res)=>{
+  res.status(200).json({message:'App is Running!'});
+})
+
 app.listen(3000, () => console.log('Server running on port 3000'));
 
 
