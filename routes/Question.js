@@ -18,7 +18,7 @@ const updateQuestion = require('../controllers/question/updateQuestion');
 router.put('/questions/:id', updateQuestion);
 
 // PATCH /api/questions/:id/move
-const moveQuestionToFolder = require('../controllers/question/moveQuestionToFolder');
+const moveQuestionToFolder = require('../controllers/question/moveQuestiontoFolder');
 router.patch('/questions/:id/move', moveQuestionToFolder);
 
 // DELETE /api/questions/:id
