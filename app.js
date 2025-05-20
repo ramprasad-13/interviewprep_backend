@@ -9,7 +9,27 @@ const auth = require('./middleware/auth');
 
 const app = express();
 
-app.use(cors({ origin: 'http://localhost:5173' }));
+// Define allowed origins
+const allowedOrigins = [
+  'https://interviewprep-frontend.vercel.app',
+  'http://localhost:5173', // For local development
+];
+
+// CORS configuration with dynamic origin handling
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (e.g., server-to-server or Postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      callback(null, origin); // Reflect the request origin
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+}));
+
 app.use(express.json());
 
 // Log requests
@@ -27,3 +47,6 @@ app.use('/api', auth, questionsRoute);
 db();
 
 app.listen(3000, () => console.log('Server running on port 3000'));
+
+
+module.exports= app;
