@@ -2,7 +2,7 @@ const BlogPost = require('../../models/Blogpost');
 
 const getAllQuestions = async (req, res) => {
   try {
-    const { page = 1, limit = 10, query = '' } = req.query;
+    const { page = 1, limit = 12, query = '' } = req.query;
     const searchCriteria = {
       authorId: req.user.id, // Filter by the authenticated user's ID
       $or: [
